@@ -26,6 +26,6 @@ Leave Management uses user interface componenets like forms, buttons, tables
 2. CSS
 3. Javascript
 ## Usage
-- locate the login.html file and open the file to run the frontend
+- locate the index.html file and open the file to run the frontend
 ## Deployment
 You can access the website using the following link https://archuthan23.github.io/Leave-Management-Frontend/
