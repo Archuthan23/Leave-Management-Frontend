@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Dashboard</title>
+<style>
+    /* Styles as per your preference */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f0f0f0;
+    }
+
+    .action-buttons button {
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-right: 5px;
+        border-radius: 4px;
+    }
+
+    .approve {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+    }
+
+    .reject {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Leave Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="leaveRequestsBody">
+                <tr>
+                    <td>Sri Harish</td>
+                    <td>2024-03-20</td>
+                    <td>2024-03-25</td>
+                    <td>SL</td>
+                    <td class="status">Pending</td>
+                    <td class="action-buttons">
+                        <button class="approve">Approve</button>
+                        <button class="reject">Reject</button>
+                    </td>
+                </tr>
+		    <tr>
+                    <td>Archuthan</td>
+                    <td>2024-10-15</td>
+                    <td>2024-10-23</td>
+                    <td>CL</td>
+                    <td class="status">Pending</td>
+                    <td class="action-buttons">
+                        <button class="approve">Approve</button>
+                        <button class="reject">Reject</button>
+                    </td>
+                </tr>
+                <!-- Other leave requests will be displayed similarly -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        // Function to handle approve button click
+        function handleApprove(event) {
+            // Display a confirmation message before approving
+            if (confirm("Are you sure you want to approve this leave request?")) {
+                // Change the status of the leave request to "Approved"
+                let row = event.target.closest("tr");
+                row.querySelector(".status").textContent = "Approved";
+                // Show a popup message confirming the approval
+                alert("Leave request approved.");
+            }
+        }
+
+        // Function to handle reject button click
+        function handleReject(event) {
+            // Display a confirmation message before rejecting
+            if (confirm("Are you sure you want to reject this leave request?")) {
+                // Change the status of the leave request to "Rejected"
+                let row = event.target.closest("tr");
+                row.querySelector(".status").textContent = "Rejected";
+                // Show a popup message confirming the rejection
+                alert("Leave request rejected.");
+            }
+        }
+
+        // Event delegation to handle delete, approve, and reject button clicks
+        document.addEventListener("DOMContentLoaded", function() {
+            // Event listener for delete button clicks
+            document.getElementById("leaveRequestsBody").addEventListener("click", function(event) {
+                if (event.target.classList.contains("delete")) {
+                    handleDelete(event);
+                }
+            });
+
+            // Event listener for approve button clicks
+            document.getElementById("leaveRequestsBody").addEventListener("click", function(event) {
+                if (event.target.classList.contains("approve")) {
+                    handleApprove(event);
+                }
+            });
+
+            // Event listener for reject button clicks
+            document.getElementById("leaveRequestsBody").addEventListener("click", function(event) {
+                if (event.target.classList.contains("reject")) {
+                    handleReject(event);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
